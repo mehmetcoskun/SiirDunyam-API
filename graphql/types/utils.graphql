@@ -1,0 +1,8 @@
+type Query {
+    utils: Util
+}
+
+type Util {
+    image: String
+    text: String
+}

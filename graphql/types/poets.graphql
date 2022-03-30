@@ -1,0 +1,10 @@
+type Query {
+    poets: [Poet!]!
+}
+
+type Poet {
+    id: ID!
+    image: String
+    name: String
+    poems: [Poem!]!
+}
