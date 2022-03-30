@@ -1,0 +1,17 @@
+type Query {
+    poem(
+        id: ID!
+    ): Poem!
+    search(
+        query: String!
+        limit: Int
+    ): [Poem!]!
+}
+
+type Poem {
+    id: ID!
+    author_id: ID!
+    title: String
+    body: String
+    poet: Poet!
+}

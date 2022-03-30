@@ -1,9 +1,7 @@
 type Query {
-    poems: [Poem!]!
-}
-
-type Poem {
-    id: ID!
-    title: String
-    body: String
+    poems(
+        authorId: ID,
+        limit: Int,
+        random: Boolean,
+    ): [Poem!]!
 }

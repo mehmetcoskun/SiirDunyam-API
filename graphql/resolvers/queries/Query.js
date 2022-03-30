@@ -2,11 +2,41 @@ const Query = {
     utils: async (parent, args, { Util }) => {
         return await Util.findOne();
     },
-    poets: async (parent, args, { Poet }) => {
-        return await Poet.findAll();
+    poets: async (parent, args, { Poet, sequelize }) => {
+        return await Poet.findAll({
+            limit: args.limit,
+            order: args.random && [
+                [sequelize.fn('RAND'), 'ASC']
+            ]
+        });
     },
-    poems: async (parent, args, { Poem }) => {
-        return await Poem.findAll();
+    poems: async (parent, args, { Poem, sequelize }) => {
+        return await Poem.findAll({
+            limit: args.limit,
+            order: args.random && [
+                [sequelize.fn('RAND'), 'ASC']
+            ],
+            where: args.authorId && {
+                author_id: args.authorId
+            }
+        });
+    },
+    poem: async (parent, args, { Poem }) => {
+        return await Poem.findOne({
+            where: {
+                id: args.id
+            }
+        });
+    },
+    search: async (parent, args, { Poem, sequelize: { Op }  }) => {
+        return await Poem.findAll({
+            limit: args.limit,
+            where: {
+                title: {
+                    [Op.like]: `%${args.query}`
+                }
+            }
+        });
     }
 };
 

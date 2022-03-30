@@ -15,7 +15,11 @@ const Poet = sequelize.define('poets', {
     name: {
         type: Sequelize.STRING,
         allowNull: true
-    }
+    },
+    poems_count: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
 });
 
 module.exports = Poet;

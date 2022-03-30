@@ -1,10 +1,14 @@
 type Query {
-    poets: [Poet!]!
+    poets(
+        limit: Int
+        random: Boolean
+    ): [Poet!]!
 }
 
 type Poet {
     id: ID!
     image: String
     name: String
+    poems_count: Int
     poems: [Poem!]!
 }
