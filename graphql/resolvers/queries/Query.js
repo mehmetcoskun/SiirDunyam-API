@@ -33,7 +33,7 @@ const Query = {
             limit: args.limit,
             where: {
                 title: {
-                    [Op.like]: `%${args.query}`
+                    [Op.like]: `${args.query}%`
                 }
             }
         });
