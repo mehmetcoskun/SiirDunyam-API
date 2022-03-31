@@ -28,20 +28,20 @@ const server = new ApolloServer({
         Poet,
         sequelize
     },
-    // introspection: true,
-    // playground: true,
+    introspection: true,
+    playground: true,
 });
 
-server.applyMiddleware({ app });
+//server.applyMiddleware({ app });
 
-// server.applyMiddleware({
-//     app,
-//     path: '/graphql',
-//     cors: {
-//         origin: true,
-//         credentials: true,
-//     },
-// });
+server.applyMiddleware({
+    app,
+    path: '/graphql',
+    cors: {
+        origin: true,
+        credentials: true,
+    },
+});
 
 const port = process.env.PORT || 4000;
 
