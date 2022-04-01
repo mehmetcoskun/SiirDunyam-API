@@ -30,12 +30,13 @@ const Query = {
     },
     search: async (parent, args, { Poem, sequelize: { Op }  }) => {
         return await Poem.findAll({
-            limit: args.limit,
             where: {
                 title: {
                     [Op.like]: `${args.query}%`
                 }
-            }
+            },
+            limit: args.limit && args.limit,
+            offset: args.offset && args.offset
         });
     }
 };
