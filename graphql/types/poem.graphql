@@ -5,6 +5,7 @@ type Query {
     search(
         query: String!
         limit: Int
+        offset: Int
     ): [Poem!]!
 }
 
