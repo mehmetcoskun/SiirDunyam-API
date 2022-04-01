@@ -2,6 +2,7 @@ type Query {
     poems(
         authorId: ID,
         limit: Int,
+        offset: Int,
         random: Boolean,
     ): [Poem!]!
 }
