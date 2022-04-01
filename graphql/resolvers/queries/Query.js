@@ -12,13 +12,14 @@ const Query = {
     },
     poems: async (parent, args, { Poem, sequelize }) => {
         return await Poem.findAll({
-            limit: args.limit,
+            where: args.authorId && {
+                author_id: args.authorId
+            },
+            limit: args.limit && args.limit,
             order: args.random && [
                 [sequelize.fn('RAND'), 'ASC']
             ],
-            where: args.authorId && {
-                author_id: args.authorId
-            }
+            offset: args.offset && args.offset
         });
     },
     poem: async (parent, args, { Poem }) => {
@@ -35,8 +36,7 @@ const Query = {
                     [Op.like]: `${args.query}%`
                 }
             },
-            limit: args.limit && args.limit,
-            offset: args.offset && args.offset
+            limit: args.limit && args.limit
         });
     }
 };
